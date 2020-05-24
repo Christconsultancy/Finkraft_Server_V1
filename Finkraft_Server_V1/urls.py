@@ -24,6 +24,7 @@ from backtesting import views as backtesting_views
 urlpatterns = [
     path('', account_views.index, name="home"),
     path('admin/backtesting', backtesting_views.backtesting_home, name='backtesting'),
+    path('admin/test/<str:statergy>', backtesting_views.test_statergy, name='test'),
     path('admin/', admin.site.urls),
 ]
 
