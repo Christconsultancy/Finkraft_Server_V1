@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>Finkraft Server - Index page</h1>
+        <a href="{% url 'backtesting' %}">Proceed to back testing module</a>
+    </div>
+
+{% endblock %}
