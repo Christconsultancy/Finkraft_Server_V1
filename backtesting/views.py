@@ -7,6 +7,10 @@ from .models import Statergies
 
 # Create your views here.
 def backtesting_home(request):
+    return render(request, 'backtesting/backtesting-home.html')
+
+
+def single_statergy_test(request):
     statergies = Statergies.objects.all().order_by('statergy_status')
 
     # pagination
@@ -17,7 +21,7 @@ def backtesting_home(request):
     context = {
         'page_obj': page_obj,
     }
-    return render(request, 'backtesting/backtesting-home.html', context)
+    return render(request, 'backtesting/signle-statergy.html', context)
 
 
 def test_statergy(request, statergy):

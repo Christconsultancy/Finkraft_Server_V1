@@ -4,11 +4,139 @@
 {% block title %}Backtesting{% endblock %}
 
 {% block content %}
+    <style>
+        .box {
+            border: 1px solid;
+            padding: 10px;
+        }
+    </style>
     <div class="container">
-    <br>
+        <br>
+        <a href="{% url 'backtesting' %}">Backtesting</a>
+        <a href="{% url 'single' %}">Strategies</a>
+        <br>
+        <br>
         <h3>Test statergy : {{ statergy_selected.statergy_name }}</h3>
         <hr>
-
+        <form method="POST" class="box">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="start_date">Start Date</label>
+                <input type="datetime-local" class="form-control" name="start_date" id="start_date"
+                       aria-describedby="startSateHelp"
+                       placeholder="Enter email">
+                <small id="startDateHelp" class="form-text text-muted">Select the start date for the test.</small>
+            </div>
+            <div class="form-group">
+                <label for="end_date">End Date</label>
+                <input type="datetime-local" class="form-control" name="end_date" id="end_date"
+                       aria-describedby="endDateHelp"
+                       placeholder="Enter email">
+                <small id="endDateHelp" class="form-text text-muted">Select the end date for the test.</small>
+            </div>
+            <div class="form-group">
+                <label>Select a Time Frame</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="timeframeRadioOptions" id="timeframe1"
+                           value="1">
+                    <label class="form-check-label" for="timeframe1">1 Min</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="timeframeRadioOptions" id="timeframe2"
+                           value="2">
+                    <label class="form-check-label" for="timeframe2">2 Min</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="timeframeRadioOptions" id="timeframe3"
+                           value="5">
+                    <label class="form-check-label" for="timeframe3">5 Min</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="timeframeRadioOptions" id="timeframe4"
+                           value="10">
+                    <label class="form-check-label" for="timeframe4">10 Min</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="timeframeRadioOptions" id="timeframe5"
+                           value="15">
+                    <label class="form-check-label" for="timeframe5">15 Min</label>
+                </div>
+                <small id="endDateHelp" class="form-text text-muted">Select the time frame for the test.</small>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Execute Test">
+        </form>
+        <hr>
+        <div class="box">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                       aria-controls="home" aria-selected="true">Summarized report</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                       aria-controls="profile" aria-selected="false">Detailed report</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <br>
+                    <h5 class="text-center">Summarized Test Report for {{ statergy_selected.statergy_name }}</h5>
+                    <br>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Date of report</th>
+                            <th scope="col">Start test date</th>
+                            <th scope="col">End test date</th>
+                            <th scope="col">Target</th>
+                            <th scope="col">Stop Loss</th>
+                            <th scope="col">Entry</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <br>
+                    <h5 class="text-center">Detailed Test Report for {{ statergy_selected.statergy_name }}</h5>
+                    <br>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Date of report</th>
+                            <th scope="col">Entry Price</th>
+                            <th scope="col">Entry Time Stamp</th>
+                            <th scope="col">Exit Price</th>
+                            <th scope="col">Exit Time Stamp</th>
+                            <th scope="col">Opening Capital</th>
+                            <th scope="col">Profit/Loss (Excl. Brokrg)</th>
+                            <th scope="col">Brokerage</th>
+                            <th scope="col">Profit/Loss (Incl. Brokrg)</th>
+                            <th scope="col">Closing Capital</th>
+                            <th scope="col">Exit reason</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
         <hr>
     </div>
 
