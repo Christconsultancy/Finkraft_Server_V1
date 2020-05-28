@@ -2,7 +2,8 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.utils.text import slugify
 
-from .models import Statergies
+from .models import Statergies, Stock
+from strategies_code.strategies import ema
 
 
 # Create your views here.
@@ -28,8 +29,19 @@ def test_statergy(request, statergy):
     try:
         statergy_selected = Statergies.objects.get(statergy_name__icontains=statergy)
         if slugify(statergy_selected.statergy_name) == statergy:
+            stock_list = Stock.objects.all()
+            hello = "hello"
+            if request.POST:
+                if "start_date" in request.POST:
+                    start_date = request.POST["start_date"]
+                    end_date = request.POST["end_date"]
+                    timeframe = request.POST["timeframeRadioOptions"]
+                    print(start_date, end_date, timeframe)
+                    ema_result = ema(start_date, end_date, timeframe)
+                    print(ema_result)
             context = {
                 'statergy_selected': statergy_selected,
+                'stock_list': stock_list,
             }
             return render(request, 'backtesting/test-statergy.html', context)
         else:

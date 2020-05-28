@@ -25,7 +25,7 @@ urlpatterns = [
     path('', account_views.index, name="home"),
     path('admin/backtesting', backtesting_views.backtesting_home, name='backtesting'),
     path('admin/backtesting/single', backtesting_views.single_statergy_test, name='single'),
-    path('admin/signle/<str:statergy>', backtesting_views.test_statergy, name='test'),
+    path('admin/single/<str:statergy>', backtesting_views.test_statergy, name='test'),
     path('admin/', admin.site.urls),
 ]
 
