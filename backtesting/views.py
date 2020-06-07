@@ -36,8 +36,9 @@ def test_statergy(request, statergy):
                     start_date = request.POST["start_date"]
                     end_date = request.POST["end_date"]
                     timeframe = request.POST["timeframeRadioOptions"]
-                    print(start_date, end_date, timeframe)
-                    ema_result = ema(start_date, end_date, timeframe)
+                    parameter = request.POST["parameter"]
+                    print(start_date, end_date, timeframe, parameter)
+                    ema_result = ema(start_date, end_date, timeframe, parameter)
                     print(ema_result)
             context = {
                 'statergy_selected': statergy_selected,
