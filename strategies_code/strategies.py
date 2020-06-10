@@ -1,4 +1,11 @@
 import pandas as pd
+from influxdb import InfluxDBClient
+client = InfluxDBClient(host='localhost', port=8086)
+client.switch_database('Stock_test')
+data = client.query('SELECT "close" FROM "ACC"')
+print(data)
+
+
 
 
 def ema(start_date, end_date, timeframe, parameter):
