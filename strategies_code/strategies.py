@@ -1,9 +1,13 @@
 import pandas as pd
 from influxdb import InfluxDBClient
 client = InfluxDBClient(host='localhost', port=8086)
-client.switch_database('Stock_test')
-data = client.query('SELECT "close" FROM "ACC"')
+client.switch_database('Stock')
+data = client.query('SELECT "open" FROM "ACC"')
+data_list = list(data)
+df_data = pd.DataFrame(data)
+data = df_data.head(15)
 print(data)
+
 
 
 
@@ -46,3 +50,4 @@ def ema(start_date, end_date, timeframe, parameter):
         'singal': singal,
     }
     return statergy_result
+
